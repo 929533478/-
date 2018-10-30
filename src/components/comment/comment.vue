@@ -1,5 +1,6 @@
 <template>
     <div class="app_commentlist">
+        
         <ul class="mui-table-view"><!--id循环速度快-->
        
 				<li v-for="item in comlist" :key="item.id" @click="togoods(item.id)" class="mui-table-view-cell mui-media">
@@ -34,7 +35,7 @@ export default {
     methods:{
         togoods(id){
              this.$router.push({path:"/goods/"+id})
-             console.log()
+             //console.log(this.comlist)
         }
     },
     props:["comlist"],

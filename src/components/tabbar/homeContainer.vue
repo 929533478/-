@@ -1,7 +1,7 @@
 <template>
 <div class="app_home_list">
    
-    <div class="mui-content">
+   <!--<div class="mui-content">
 			<div class="mui-content-padded" style="margin: 5px;">
             <div>登录 <span>百度外卖</span> </div>
 				 
@@ -10,81 +10,86 @@
 				</div>
                 </div>
                 </div>
+--> 
+    <div class="wailogo">
+       <img src="../../img/wailogo1.jpg" class="imglogo" alt="">
+       <input type="text" placeholder="请输入搜索的商品" @click="search">
+       
+       <img src="../../img/2tou.png"  @click="user" alt="">
+   </div>
 
-    
-     
 
     <!--六宫格-->
     <div class="gong">
             <ul class="mui-table-view mui-grid-view mui-grid-9">
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                          
-                            <router-link to="/home/news">
-		                       <img src="../../img/menu01.png" />
+                            <router-link to="/prolist" >
+		                       <img src="../../img/menu01.png"  />
                                <div class="mui-media-body">餐饮</div>
                             </router-link>
                             
                             </li>
                             
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/home/goodlist">
+                    <router-link to="/prolist">
 		                    <img src="../../img/menu02.png" />
                             <div class="mui-media-body">早餐</div>
                             </router-link>
                             </li>
                             
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/shop">
+                    <router-link to="/prolist">
 		                    <img src="../../img/menu03.png" />
                             <div class="mui-media-body">下午茶</div>
                             </router-link>
                             </li>
                             
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                   <router-link to="/prolist">
 		                    <img src="../../img/menu04.png" />
                             <div class="mui-media-body">夜宵</div>
-                            </a>
+                            </router-link>
                             </li>
                             
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/search">
+                    <router-link to="/prolist">
 		                   <img src="../../img/menu05.png" />
                             <div class="mui-media-body">专送</div>
                             </router-link>
                             </li>
                             
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                   <router-link to="/prolist">
                             <img src="../../img/menu06.png" />
 		                    <div class="mui-media-body">超市购</div>
-                            </a>
+                            </router-link>
                             </li>
 
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/prolist">
                             <img src="../../img/menu07.png" />
 		                    <div class="mui-media-body">果生鲜</div>
-                            </a>
+                            </router-link>
                             </li>
 
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/prolist">
                             <img src="../../img/menu08.png" />
 		                    <div class="mui-media-body">药上门</div>
-                            </a>
+                            </router-link>
                             </li>
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/prolist">
                             <img src="../../img/menu09.png" />
 		                    <div class="mui-media-body">品牌馆</div>
-                            </a>
+                           </router-link>
                             </li>
                             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/prolist">
                             <img src="../../img/menu10.png" />
 		                    <div class="mui-media-body"><span>新店惠</span></div>
-                            </a>
+                            </router-link>
                             </li>
 		           
 		        </ul> 
@@ -121,14 +126,29 @@ import comment from '../comment/comment.vue';
         
         data(){
             return{
+              
                 trans:{},
                 list:[],
                 commentlist:[],
                 pageInedx:0
+                
             }
         },
         methods:{
-            
+            search(){
+             this.$router.push({path:"/search"})
+           },
+            user(){
+                if(this.$store.getters.opCount){
+                this.$router.push({path:"/usercontent"})//跳转个人中心
+                return;
+                }
+             this.$router.push({path:"/user"})
+           },
+            setname(){
+              
+             
+            },
             d3(){
                 
                var d3=document.querySelector(".contents")
@@ -215,12 +235,38 @@ import comment from '../comment/comment.vue';
 
 </script>
 <style>
+.imglogo{
+    padding: 8px;
+}
+.wailogo{
+        width:100%;
+        height:60px;
+        background: #fff;
+        display: flex;
+        position: fixed;
+        z-index: 50;
+        top: -1px;
+    }
+ .app_home_list .wailogo img{
+        width: 15%;
+        height: 60px;
+        
+    }
+    .wailogo input{
+        margin-top:12px; 
+        width: 70%;
+        height:33px;
+        border-radius: 15px;
+        background: #eeee;
+        font-size: 15px;
+    }
+
 .contents{
         width: 100%;
         height: 130px;
         position: relative;
         transform-style: preserve-3d;/*使被转换的子元素保留其 3D 转换*/
-        top:-5px;
+        top:33px;
         left:0px;
         
         transition: all 0.8s;
@@ -253,7 +299,7 @@ import comment from '../comment/comment.vue';
 /*轮播样式*/
     div.gong{
         position:relative;
-       top:-31px;
+        top:22px;
     }
    .app_home_list div.mui-content{
        position:relative;
@@ -295,7 +341,7 @@ import comment from '../comment/comment.vue';
          
         }
     .hsj{
-        margin:10px;
+        margin-top: 51px;
         }
   
 </style>

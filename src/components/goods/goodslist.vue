@@ -117,7 +117,7 @@ export default{
     let foodList=this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
     let el=foodList[index];
     this.foodsScroll.scrollToElement(el,300)
-        console.log(index)
+        //console.log(index)
     },
     _drop(target) {
       this.$refs.shopcart.drop(target)
@@ -157,7 +157,7 @@ export default{
                this._calculateHeight();//定义一个计算高度的方法
             }) 
           }
-         console.log(response)
+        // console.log(response)
        })
              
               
@@ -177,8 +177,8 @@ export default{
     font-size: 1.6rem;
 }
 .goodsList{
-    overflow: hidden;
-     position :absolute;
+     overflow: hidden;
+     position :fixed;
      top:223px;
      width:100%;
      height: 70%;
@@ -201,17 +201,18 @@ export default{
       flex: 0 0 110px;
       width: 110px;
       background: #D0D0D0;
-      overflow: auto;
+      
     }
      .foods-wrapper{
        flex: 1;
-      overflow: auto;
+      
      }
    .menu-item{
      display:table;
      height:54px;
-     width: 100px;
+     width: 108px;
      line-height:14px;
+     
     } 
    .current{
      background: white;
@@ -219,6 +220,7 @@ export default{
      z-index: 10;
      margin-top: -1px;
      font-weight: 700;
+     border-right: 2px solid red; 
     } 
 
    .icon{

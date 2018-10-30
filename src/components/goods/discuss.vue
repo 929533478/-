@@ -3,7 +3,7 @@
         <h5>欢迎评论</h5>
         <textarea placeholder="请输入评论的内容(最多吐槽120个字)" v-model="msg" cols="2" rows="5"></textarea>
         <input type="text" placeholder="请输入菜品" v-model="caipin">
-        <input type="file" id="imgUploadBtn" />
+        <!--<input type="file" id="imgUploadBtn" />-->
         <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
 
         <h5>用户评价</h5>
@@ -35,29 +35,31 @@ export default {
     },
     methods:{
         postComment(){
+            
             var username="匿名";
             var nid= this.nid;
             var content = this.msg;
             var variety=this.caipin;
             var img_url="http://127.0.0.1:3000/img/combo/hb.png";
-            console.log(username+":"+nid+":"+content+":"+variety);
+           // console.log(username+":"+nid+":"+content+":"+variety);
             var url="comment/saveComment";
             var obj={username:username,nid:nid,content:content,variety:variety,img_url:img_url}
             this.$http.post(url,obj).then(result=>{
             if(result.body.code==1){
-                this.msg="";
+                this.msg="";this.caipin=""
                 Toast(result.body.msg)
                 
             }else{
                 Toast(result.body.msg);
             }
-
+            this.getobserver()
             })
+            
         },
         getobserver(){
             this.$http.get("comment/observer?nid="+this.nid).then(result=>{
                 this.list=result.body.msg
-                console.log(result)
+               // console.log(result)
             })
             }
        

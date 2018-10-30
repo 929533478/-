@@ -3,8 +3,26 @@ import App from './App.vue'
 import router from './router'
 import'mint-ui/lib/style.css'
 
-import Vuex from 'vuex';
-import vuex_store from './store';
+import Vuex from 'vuex';//引入vx
+Vue.use(Vuex);//注册
+var store=new Vuex.Store({//共享数据
+    state:{
+      gname:""
+    },
+    mutations:{//操作共享数据的方法
+      getname(state,uname){state.gname=uname},
+      next(state){state.gname="";}
+        
+      
+      
+      
+    },
+    getters:{ //获取并监听数据的方法
+      opCount:function(state){
+        return state.gname;
+      }
+  }  
+});//
 
 
 Vue.config.productionTip = false
@@ -31,7 +49,7 @@ Vue.component(Button.name,Button);
 //3引入vueresource
 import VueResource from "vue-resource";
 Vue.use(VueResource)//加载
-Vue.use(Vuex);
+
 //时间过滤器filter
 Vue.filter("dateFormat",function(datestr,pattern="YYYY-MM-DD"){
   return new Date(datestr).toLocaleString();
@@ -46,5 +64,5 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
-  store: vuex_store(Vuex)
+  store
 });

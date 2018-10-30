@@ -1,7 +1,8 @@
 <template>
     <div class="app_goods">
        <header class="mui-bar mui-bar-nav mui-bar-nav-bg">
-        <a id="icon-menu" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+           <img class="img1" src="../../img/true.png" @click="back" alt="">
+       
         <a class="mui-action-back mui-icon-extra mui-icon-extra-heart mui-pull-right mui-a-color"></a>
         <h1 class="mui-title">{{details.title}}</h1>
          
@@ -20,14 +21,14 @@
         </div>  
         <div class="title_box3 titlefixed">
           
-           <span @click="getbox1" class="active">商品</span>
+           <span @click="getbox1" :class="{'active':box==1}">商品</span>
            
 
-           <span @click="getbox2">评价</span>
+           <span @click="getbox2" :class="{'active':box==2}">评价</span>
            
 
           
-           <span @click="getbox3">商家</span>
+           <span @click="getbox3" :class="{'active':box==3}">商家</span>
            
         </div> 
         <div v-if="box==1" class="title_box4">
@@ -64,17 +65,20 @@ export default {
             }
     },
     methods:{
+        back(){
+                this.$router.push({path:"/"})
+           },
         getbox1(){
             this.box=1
-            console.log(this.box)
+            //console.log(this.box)
         },
         getbox2(){
             this.box=2
-            console.log(this.box)
+           // console.log(this.box)
         },
         getbox3(){
             this.box=3
-            console.log(this.box)
+            //console.log(this.box)
         },
         togoods(){
                 this.$http.get("goods/list?id="+this.id).then(result=>{
@@ -98,6 +102,26 @@ export default {
 }
 </script> 
 <style>
+.app_goods .mui-bar .img1{
+    margin:5px 0 0 5px;
+    padding: 1px;
+    width: 35px;
+    height: 35px;
+    border:3px solid #666;
+    border-radius:50% 
+}
+
+.active{
+    color: #fe2947 !important;
+    border-bottom: solid 2.5px #fe2947 !important; 
+   
+
+}
+.title_box3 span{
+    
+    border-bottom:0px solid #fff; 
+    transition: all 0.2s;
+}
 .displaynone{
     display: none;
 }
@@ -164,10 +188,7 @@ export default {
     display: inline-block;
     color:black;
 }
-.active{
-    color: #fe2947 !important;
-    border-bottom: solid 2px #fe2947;
-}
+
 .app_goods .title_box4{
 
     
